@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { signIn } from '../utils/auth';
+import Logo from './Logo';
 
 function Signin() {
   return (
@@ -17,6 +18,7 @@ function Signin() {
         paddingBlock: '0 5rem',
       }}
     >
+      <Logo />
       <h1>Hi there!</h1>
       <p>Click the button below to login!</p>
       <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
