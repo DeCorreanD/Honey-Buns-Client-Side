@@ -25,4 +25,32 @@ const getSingleItem = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { getItems, getSingleItem };
+const favoriteItem = (itemId, uid) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/items/${itemId}/favorite`, {
+    method: 'POST',
+    body: JSON.stringify(),
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `${uid}`,
+    },
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+const unfavoriteItem = (itemId, uid) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/items/${itemId}/unfavorite`, {
+    method: 'DELETE',
+    body: JSON.stringify(),
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `${uid}`,
+    },
+  })
+    .then(resolve)
+    .catch(reject);
+});
+
+export {
+  getItems, getSingleItem, favoriteItem, unfavoriteItem,
+};

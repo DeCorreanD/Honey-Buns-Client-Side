@@ -3,15 +3,16 @@ import { Form, InputGroup } from 'react-bootstrap';
 
 import { getItems } from '../../utils/data/itemsData';
 import ItemCard from '../../components/items/ItemCard';
+import { useAuth } from '../../utils/context/authContext';
 // import { useAuth } from '../../utils/context/authContext';
 
 function ItemHome() {
   // const { user } = useAuth();
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState('');
-  console.warn(search);
+  const { user } = useAuth();
   const showProducts = () => {
-    getItems().then((data) => setProducts(data));
+    getItems(user.uid).then((data) => setProducts(data));
   };
   useEffect(() => {
     showProducts();
@@ -29,7 +30,7 @@ function ItemHome() {
             .filter((product) => (search.toLowerCase() === '' ? product : product.name.toLowerCase().includes(search)))
             .map((product) => (
               <section key={`product--${product.id}`}>
-                <ItemCard id={product.id} name={product.name} description={product.description} image={product.image_url} price={product.price} onUpdate={showProducts} />
+                <ItemCard itemObj={product} onUpdate={showProducts} />
               </section>
             ))}
         </div>

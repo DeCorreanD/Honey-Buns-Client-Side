@@ -17,7 +17,11 @@ function Home() {
           margin: '0 auto',
         }}
       >
-        <Logo />
+        <Logo
+          style={{
+            borderRadius: '50px',
+          }}
+        />
         <h1>Welcome, {user.first_name}! </h1>
 
         <Link passHref href="/menu/menuPage">
@@ -27,7 +31,6 @@ function Home() {
         <Link passHref href="/cart">
           <Button className="cart-btn">Current Order</Button>
         </Link>
-
       </div>
     </>
   );
