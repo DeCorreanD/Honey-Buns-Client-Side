@@ -5,12 +5,18 @@ import { useRouter } from 'next/router';
 import { Button, Card } from 'react-bootstrap';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { FaInfoCircle, FaCartPlus } from 'react-icons/fa'; // Import the "info-circle" icon
+import { favoriteItem, unfavoriteItem } from '../../utils/data/itemsData';
+import { useAuth } from '../../utils/context/authContext';
 
-const ItemCard = ({
-  id, name, description, price, image,
-}) => {
+const ItemCard = ({ itemObj, onUpdate }) => {
+  const { user } = useAuth();
   const router = useRouter();
-
+  const favorite = () => {
+    favoriteItem(itemObj.id, user.uid).then(() => onUpdate());
+  };
+  const unfavorite = () => {
+    unfavoriteItem(itemObj.id, user.uid).then(() => onUpdate());
+  };
   return (
     <>
       <Card
@@ -26,24 +32,24 @@ const ItemCard = ({
         }}
       >
         <Card.Header>
-          <h1>{name}</h1>
+          <h1>{itemObj.name}</h1>
         </Card.Header>
         <Card.Body>
           <div>
-            <img src={image} alt="item" style={{ width: '18rem', height: 'auto' }} />
+            <img src={itemObj.image} alt="item" style={{ width: '18rem', height: 'auto' }} />
           </div>
           <br />
           <Card.Text>
-            <h5>{description}</h5>
+            <h5>{itemObj.description}</h5>
           </Card.Text>
           <Card.Text>
-            <h4>Price: ${price}</h4>
+            <h4>Price: ${itemObj.price}</h4>
           </Card.Text>
         </Card.Body>
         <Button
           variant="warning"
           onClick={() => {
-            router.push(`/items/${id}`);
+            router.push(`/items/${itemObj.id}`);
           }}
         >
           <FaInfoCircle style={{ marginRight: '5px' }} /> {/* Details icon */}
@@ -52,23 +58,29 @@ const ItemCard = ({
         <Button
           variant="danger" // Choose a color that suits your design
           onClick={() => {
-            router.push(`/orderitems/new/${id}`);
+            router.push(`/orderitems/new/${itemObj.id}`);
           }}
           style={{ marginTop: '10px' }}
         >
           <FaCartPlus style={{ marginRight: '5px' }} /> {/* Add to Cart icon */}
           Add to Cart
         </Button>
+        {itemObj.favorited ? <Button onClick={unfavorite}>unfavorite</Button> : <Button onClick={favorite}>favorite</Button>}
       </Card>
     </>
   );
 };
 ItemCard.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  itemObj: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    price: PropTypes.string,
+    image: PropTypes.string,
+    favorited: PropTypes.bool,
+  }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
+
 };
 
 export default ItemCard;
