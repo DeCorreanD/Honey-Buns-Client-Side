@@ -1,14 +1,15 @@
-import { useState } from 'react';
+/* eslint-disable react/require-default-props */
+import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { registerUser } from '../utils/auth';
-import { useAuth } from '../utils/context/authContext';
+import { editUser } from '../utils/data/userData';
 
 // eslint-disable-next-line no-unused-vars
-function RegisterForm() {
-  const { user } = useAuth();
-  // const router = useRouter();
+function RegisterForm({ user }) {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     uid: user.uid,
     firstName: '',
@@ -17,6 +18,21 @@ function RegisterForm() {
     phoneNumber: '',
     address: '',
   });
+
+  useEffect(() => {
+    if (user) {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        uid: user.uid,
+        firstName: user.first_name || '',
+        lastName: user.last_name || '',
+        email: user.email || '',
+        phoneNumber: user.phone_number || '',
+        address: user.address || '',
+        id: user.id,
+      }));
+    }
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,7 +44,12 @@ function RegisterForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    registerUser(formData).then((window.location.href = '/'));
+    if (user.id) {
+      editUser(formData)
+        .then(() => router.push('/profile'));
+    } else {
+      registerUser(formData).then(() => router.push('/'));
+    }
   };
 
   return (
@@ -70,5 +91,15 @@ function RegisterForm() {
     </>
   );
 }
-
+RegisterForm.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.number,
+    phone_number: PropTypes.number,
+    first_name: PropTypes.string,
+    last_name: PropTypes.string,
+    email: PropTypes.string,
+    address: PropTypes.string,
+    uid: PropTypes.string,
+  }),
+};
 export default RegisterForm;
