@@ -28,7 +28,7 @@ export default function NavBar() {
               <Button className="menu-btn">Menu</Button>
             </Link>
 
-            <Link passHref href="/orders">
+            <Link passHref href="/favorites">
               <Button className="past-orders-btn">Favorites</Button>
             </Link>
 

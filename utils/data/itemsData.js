@@ -50,7 +50,25 @@ const unfavoriteItem = (itemId, uid) => new Promise((resolve, reject) => {
     .then(resolve)
     .catch(reject);
 });
+const getFavoriteProduct = async (userId, uid) => {
+  const response = await fetch(`${clientCredentials.databaseURL}/favoriteitems?user=${userId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `${uid}`,
+    },
+  });
+  const products = await response.json();
+  return Object.values(products);
+};
+const getFavoritedItems = (uid) => fetch(`${clientCredentials.databaseURL}/favoriteitems?user=${uid}`, {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `${uid}`,
+  },
+}).then((response) => response.json());
 
 export {
-  getItems, getSingleItem, favoriteItem, unfavoriteItem,
+  getItems, getSingleItem, favoriteItem, unfavoriteItem, getFavoriteProduct, getFavoritedItems,
 };
