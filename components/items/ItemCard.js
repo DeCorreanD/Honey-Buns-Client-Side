@@ -36,14 +36,14 @@ const ItemCard = ({ itemObj, onUpdate }) => {
         </Card.Header>
         <Card.Body>
           <div>
-            <img src={itemObj.image} alt="item" style={{ width: '18rem', height: 'auto' }} />
+            <img src={itemObj.image_url} alt="item" style={{ width: '18rem', height: 'auto' }} />
           </div>
           <br />
           <Card.Text>
-            <h5>{itemObj.description}</h5>
+            <>{itemObj.description}</>
           </Card.Text>
           <Card.Text>
-            <h4>Price: ${itemObj.price}</h4>
+            <>Price: ${itemObj.price}</>
           </Card.Text>
         </Card.Body>
         <Button
@@ -76,7 +76,7 @@ ItemCard.propTypes = {
     name: PropTypes.string,
     description: PropTypes.string,
     price: PropTypes.string,
-    image: PropTypes.string,
+    image_url: PropTypes.string,
     favorited: PropTypes.bool,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
