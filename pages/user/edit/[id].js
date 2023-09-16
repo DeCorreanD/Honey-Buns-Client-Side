@@ -13,5 +13,5 @@ export default function UpdateUser() {
     getSingleUser(id).then(setEditUser);
   }, [id]);
 
-  return <RegisterForm user={editUser} />;
+  return <RegisterForm user={editUser} updateUser={getSingleUser} />;
 }
