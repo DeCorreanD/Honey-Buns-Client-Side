@@ -61,7 +61,7 @@ const getFavoriteProduct = async (userId, uid) => {
   const products = await response.json();
   return Object.values(products);
 };
-const getFavoritedItems = (uid) => fetch(`${clientCredentials.databaseURL}/favoriteitems?user=${uid}`, {
+const getFavoritedItems = (id, uid) => fetch(`${clientCredentials.databaseURL}/favoriteitems?user=${id}`, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',

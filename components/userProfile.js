@@ -17,6 +17,7 @@ export default function UserProfile() {
   const deleteProfile = () => {
     if (window.confirm('Are you sure you would like to delete your profile? You cannot undo this action.')) {
       deleteUser(user.id).then(() => signOut());
+      router.push('/');
     }
   };
 

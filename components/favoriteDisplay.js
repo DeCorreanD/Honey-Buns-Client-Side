@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../utils/context/authContext';
 import { getFavoritedItems } from '../utils/data/itemsData';
-import ItemCard from './items/ItemCard';
+import FavItemCard from './items/FavItemCard';
 
 export default function FavoriteDisplay() {
   const [favorites, setFavorites] = useState([]);
@@ -21,7 +21,7 @@ export default function FavoriteDisplay() {
       <div>
         {favorites.map((favorite) => (
           <section key={`favorite--${favorite.id}`}>
-            <ItemCard itemObj={favorite} onUpdate={getFavorites} />
+            <FavItemCard itemObj={favorite.product} />
           </section>
         ))}
       </div>

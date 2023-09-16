@@ -8,7 +8,7 @@ import { registerUser } from '../utils/auth';
 import { editUser } from '../utils/data/userData';
 
 // eslint-disable-next-line no-unused-vars
-function RegisterForm({ user }) {
+function RegisterForm({ user, updateUser }) {
   const router = useRouter();
   const [formData, setFormData] = useState({
     uid: user.uid,
@@ -48,7 +48,7 @@ function RegisterForm({ user }) {
       editUser(formData)
         .then(() => router.push('/profile'));
     } else {
-      registerUser(formData).then(() => router.push('/'));
+      registerUser(formData).then(() => updateUser(user.uid));
     }
   };
 
@@ -94,12 +94,13 @@ function RegisterForm({ user }) {
 RegisterForm.propTypes = {
   user: PropTypes.shape({
     id: PropTypes.number,
-    phone_number: PropTypes.number,
+    phone_number: PropTypes.string,
     first_name: PropTypes.string,
     last_name: PropTypes.string,
     email: PropTypes.string,
     address: PropTypes.string,
     uid: PropTypes.string,
   }),
+  updateUser: PropTypes.func.isRequired,
 };
 export default RegisterForm;
