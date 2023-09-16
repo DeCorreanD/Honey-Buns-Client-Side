@@ -33,4 +33,4 @@ Honey Buns Breakfast is a home away from home. This is a place where families ca
 ## Video Walkthrough
 -TBA
 ## Contributors
--[DeCorrean Davis] (https://github.com/DeCorreanD)
+-[DeCorrean Davis](https://github.com/DeCorreanD)
