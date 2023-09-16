@@ -67,12 +67,10 @@ Honey Buns Breakfast is a home away from home. This is a place where families ca
         {itemObj.favorited ? <Button onClick={unfavorite}>unfavorite</Button> : <Button onClick={favorite}>favorite</Button>}
       </Card>
     </>
-  );
-};
 
 ## Project Screenshots
--TBA
+- TBA
 ## Video Walkthrough
--TBA
+- TBA
 ## Contributors
 -[DeCorrean Davis](https://github.com/DeCorreanD)
