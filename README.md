@@ -17,16 +17,58 @@ Honey Buns Breakfast is a home away from home. This is a place where families ca
 - [Project Board](https://github.com/users/DeCorreanD/projects/6)
 - [Server-Side Repo](https://github.com/DeCorreanD/Honey-Buns-Server-Side)
 ## Code Snippet
-      <div>
-        {favorites.map((favorite) => (
-          <section key={`favorite--${favorite.id}`}>
-            <FavItemCard itemObj={favorite.product} />
-          </section>
-        ))}
-      </div>
+         <>
+      <Card
+        className="product-card"
+        style={{
+          width: '22rem',
+          height: 'auto',
+          margin: '30px',
+          padding: '20px',
+          justifyContent: 'center',
+          display: 'flex',
+          flexWrap: 'flex',
+        }}
+      >
+        <Card.Header>
+          <h1>{itemObj.name}</h1>
+        </Card.Header>
+        <Card.Body>
+          <div>
+            <img src={itemObj.image_url} alt="item" style={{ width: '18rem', height: 'auto' }} />
+          </div>
+          <br />
+          <Card.Text>
+            <>{itemObj.description}</>
+          </Card.Text>
+          <Card.Text>
+            <>Price: ${itemObj.price}</>
+          </Card.Text>
+        </Card.Body>
+        <Button
+          variant="warning"
+          onClick={() => {
+            router.push(`/items/${itemObj.id}`);
+          }}
+        >
+          <FaInfoCircle style={{ marginRight: '5px' }} /> {/* Details icon */}
+          Details
+        </Button>
+        <Button
+          variant="danger" // Choose a color that suits your design
+          onClick={() => {
+            router.push(`/orderitems/new/${itemObj.id}`);
+          }}
+          style={{ marginTop: '10px' }}
+        >
+          <FaCartPlus style={{ marginRight: '5px' }} /> {/* Add to Cart icon */}
+          Add to Cart
+        </Button>
+        {itemObj.favorited ? <Button onClick={unfavorite}>unfavorite</Button> : <Button onClick={favorite}>favorite</Button>}
+      </Card>
     </>
   );
-}
+};
 
 ## Project Screenshots
 -TBA
