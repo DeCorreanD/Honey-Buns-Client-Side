@@ -12,10 +12,10 @@ Honey Buns Breakfast is a home away from home. This is a place where families ca
 - User can view their cart to see what items have been added, the price of all items, can remove an item from cart &  can complete the order to begin being processed.
 - User can use a searchbar on the menu page to search for an item in the menu. 
 ## Relevant Links
--[ERD] (https://dbdiagram.io/d/64e04ba902bd1c4a5e0938fc)
--[Wireframe] (https://www.figma.com/file/Xyiq3smayE3fCCUuhwtB65/Honey-Buns?type=whiteboard&node-id=1-119&t=S4dgDRVdnUvEpbhM-0)
--[Project Board] (https://github.com/users/DeCorreanD/projects/6)
--[Server-Side Repo] (https://github.com/DeCorreanD/Honey-Buns-Server-Side)
+- [ERD](https://dbdiagram.io/d/64e04ba902bd1c4a5e0938fc)
+- [Wireframe](https://www.figma.com/file/Xyiq3smayE3fCCUuhwtB65/Honey-Buns?type=whiteboard&node-id=1-119&t=S4dgDRVdnUvEpbhM-0)
+- [Project Board](https://github.com/users/DeCorreanD/projects/6)
+- [Server-Side Repo](https://github.com/DeCorreanD/Honey-Buns-Server-Side)
 ## Code Snippet
       <div>
         {favorites.map((favorite) => (
