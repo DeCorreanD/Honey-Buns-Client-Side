@@ -17,26 +17,6 @@ Honey Buns Breakfast is a home away from home. This is a place where families ca
 -[Project Board] (https://github.com/users/DeCorreanD/projects/6)
 -[Server-Side Repo] (https://github.com/DeCorreanD/Honey-Buns-Server-Side)
 ## Code Snippet
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
-import { useAuth } from '../utils/context/authContext';
-import { getFavoritedItems } from '../utils/data/itemsData';
-import FavItemCard from './items/FavItemCard';
-
-export default function FavoriteDisplay() {
-  const [favorites, setFavorites] = useState([]);
-  const { user } = useAuth();
-
-  const getFavorites = () => {
-    getFavoritedItems(user.id, user.uid).then(setFavorites);
-  };
-
-  useEffect(() => {
-    getFavorites();
-  }, []);
-
-  return (
-    <>
       <div>
         {favorites.map((favorite) => (
           <section key={`favorite--${favorite.id}`}>
